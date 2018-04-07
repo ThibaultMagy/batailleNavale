@@ -5,7 +5,7 @@ import javax.swing.JFrame;
 public class MainWindow extends JFrame {
 	public MainWindow() {
 		this.setTitle("Fenetre");
-		this.setSize(600,250);
+		this.setSize(600,350);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setResizable(false);
 
