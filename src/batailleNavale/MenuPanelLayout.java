@@ -2,12 +2,14 @@ package batailleNavale;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.GridLayout;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.JTextField;
-import javax.swing.SpringLayout;
 import javax.swing.SwingConstants;
 
 //Classe permettant de Layerer le menu
@@ -16,8 +18,8 @@ public class MenuPanelLayout extends JPanel{
 	private static final long serialVersionUID = -5058673910875834462L;
 	//ATTRIBUTS
 	private JLabel jlTitle = new JLabel("BATAILLE NAVALE");
-	private JButton jbIa = new JButton("Bataille contre IA");
-	private JButton jbJoueurVsJoueur = new JButton("Bataille contre joueur");
+	private JRadioButton jbIa = new JRadioButton("Bataille contre IA");
+	private JRadioButton jbJoueurVsJoueur = new JRadioButton("Bataille contre joueur");
 	private JTextField jtfJoueur1 = new JTextField("Joueur 1");
 	private JTextField jtfJoueur2 = new JTextField("Joueur 2");
 	private JButton jbStart = new JButton("START");
@@ -34,11 +36,12 @@ public class MenuPanelLayout extends JPanel{
 		
 		//Ajout des elements principaux pour le centre du borderlayout
 		//A mettre dans une nouvelle classe
-		SpringLayout jpElements = new SpringLayout();
-		jpElements.putConstraint(SpringLayout.WEST, jbIa, 10, SpringLayout.WEST, this);
-		jpElements.putConstraint(SpringLayout.NORTH, jbIa, 25, SpringLayout.NORTH, this);
-		jpElements.putConstraint(SpringLayout.NORTH, jtfJoueur1, 25, SpringLayout.NORTH, this);
-		jpElements.putConstraint(SpringLayout.WEST, jtfJoueur1, 20, SpringLayout.WEST, this);
+		ButtonGroup bg = new ButtonGroup();
+		bg.add(jbIa);
+		bg.add(jbJoueurVsJoueur);
+		GridLayout jpEst = new GridLayout(2,1);
+		jpEst.add(jbIa);
+		jpEst.add(jbJoueurVsJoueur);
 		/*jpElements.add(jtfJoueur1);
 		jpElements.add(jbJoueurVsJoueur);
 		jpElements.add(jtfJoueur2);*/
