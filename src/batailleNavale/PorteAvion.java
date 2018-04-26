@@ -1,7 +1,7 @@
 package batailleNavale;
 
 public class PorteAvion extends Bateau{
-	public PorteAvion(int x) {
+	public PorteAvion() {
 		super(5);
 	}
 }

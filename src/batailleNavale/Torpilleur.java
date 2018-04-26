@@ -2,7 +2,7 @@ package batailleNavale;
 
 public class Torpilleur extends Bateau {
 
-	public Torpilleur(int x) {
+	public Torpilleur() {
 		super(2);
 	}
 	
