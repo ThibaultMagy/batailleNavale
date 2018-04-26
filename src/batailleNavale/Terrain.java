@@ -19,4 +19,18 @@ public class Terrain {
 			}
 		}
 	}
+
+	//GETTERS SETTERS
+	public int getTaille() {
+		return taille;
+	}
+	public void setTaille(int taille) {
+		this.taille = taille;
+	}
+	public int[][] getTerrain() {
+		return terrain;
+	}
+	public void setTerrain(int[][] terrain) {
+		this.terrain = terrain;
+	}
 }

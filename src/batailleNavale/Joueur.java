@@ -21,5 +21,17 @@ public class Joueur {
 		etat = true;
 	}
 	
-	
+	//GETTERS SETTERS
+	public Bateau[] getBateaux() {
+		return bateaux;
+	}
+	public void setBateaux(Bateau[] bateaux) {
+		this.bateaux = bateaux;
+	}
+	public boolean isEtat() {
+		return etat;
+	}
+	public void setEtat(boolean etat) {
+		this.etat = etat;
+	}
 }

@@ -31,4 +31,30 @@ public class Bateau {
 			turned=false;
 		}
 	}
+	
+	//GETTERS SETTERS
+	public boolean isTurned() {
+		return turned;
+	}
+	public void setTurned(boolean turned) {
+		this.turned = turned;
+	}
+	public int getX() {
+		return x;
+	}
+	public void setX(int x) {
+		this.x = x;
+	}
+	public int[][] getTaille() {
+		return taille;
+	}
+	public void setTaille(int[][] taille) {
+		this.taille = taille;
+	}
+	public boolean isEtat() {
+		return etat;
+	}
+	public void setEtat(boolean etat) {
+		this.etat = etat;
+	}
 }

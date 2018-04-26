@@ -1,9 +1,13 @@
 package batailleNavale;
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -20,10 +24,14 @@ public class MenuPanelLayout extends JPanel{
 	private JLabel jlTitle = new JLabel("BATAILLE NAVALE");
 	private JRadioButton jbIa = new JRadioButton("Bataille contre IA");
 	private JRadioButton jbJoueurVsJoueur = new JRadioButton("Bataille contre joueur");
+	private JLabel usernames = new JLabel("Entrez vos pseudos:");
 	private JTextField jtfJoueur1 = new JTextField("Joueur 1");
 	private JTextField jtfJoueur2 = new JTextField("Joueur 2");
 	private JButton jbStart = new JButton("START");
 	private JButton jbQuit = new JButton("QUIT");
+	private String nomJoueur1;
+	private String nomJoueur2;
+	private JLabel erreur = new JLabel("");
 	
 	//Choix du type de layout
 	BorderLayout bl = new BorderLayout();
@@ -33,35 +41,87 @@ public class MenuPanelLayout extends JPanel{
 		Font titleFont = new Font("Arial", Font.BOLD, 28);
 		jlTitle.setFont(titleFont);
 		jlTitle.setHorizontalAlignment(SwingConstants.CENTER);
+	
+		//Erreur
+		erreur.setHorizontalAlignment(SwingConstants.CENTER);
 		
-		//Ajout des elements principaux pour le centre du borderlayout
-		//A mettre dans une nouvelle classe
-		ButtonGroup bg = new ButtonGroup();
-		bg.add(jbIa);
-		bg.add(jbJoueurVsJoueur);
-		GridLayout jpEst = new GridLayout(2,1);
-		jpEst.add(jbIa);
-		jpEst.add(jbJoueurVsJoueur);
-		/*jpElements.add(jtfJoueur1);
-		jpElements.add(jbJoueurVsJoueur);
-		jpElements.add(jtfJoueur2);*/
+		//Entrez pseudos
+		usernames.setHorizontalAlignment(SwingConstants.CENTER);
+		
+		//Ajout des boutons choix du mode de jeu
+		ButtonGroup group = new ButtonGroup();
+		group.add(jbJoueurVsJoueur);
+		group.add(jbIa);
+		JPanel choixModeJeu = new JPanel();
+		choixModeJeu.setLayout(new BoxLayout(choixModeJeu,BoxLayout.Y_AXIS));
+		choixModeJeu.add(jbJoueurVsJoueur);
+		choixModeJeu.add(Box.createRigidArea(new Dimension(0,20)));
+		choixModeJeu.add(jbIa);
+		choixModeJeu.add(Box.createVerticalGlue());
+		
+		
+		
+		//Ajout des TextField 
+		JPanel tField = new JPanel();
+		tField.setLayout(new BoxLayout(tField,BoxLayout.Y_AXIS));
+		tField.add(usernames);
+		tField.add(Box.createRigidArea(new Dimension(0,5)));
+		tField.add(jtfJoueur1);
+		tField.add(Box.createRigidArea(new Dimension(0,5)));
+		tField.add(jtfJoueur2);
+		
+		
+		
+		
 		//Ajout de start et de quit
 		JPanel jpLaunchButtons = new JPanel();
 		jpLaunchButtons.setLayout(new FlowLayout());
 		jpLaunchButtons.add(jbStart);
 		jpLaunchButtons.add(jbQuit);
+		//Bouton quitter
+		jbQuit.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
+		//Bouton start
+		jbStart.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(jtfJoueur1.getText().equals("") && jtfJoueur2.getText().equals("")) {
+					erreur.setText("Vous n'avez pas saisi de pseudo");
+				}
+				else if(jtfJoueur1.getText().equals("") || jtfJoueur2.getText().equals("")) {
+					erreur.setText("Saisir pseudo du joueur");
+				}
+				else if(jbJoueurVsJoueur.isSelected()!= true) {
+					erreur.setText("Veuillez choisir le mode Joueur vs Joueur");
+				}
+				else {
+					nomJoueur1 = jtfJoueur1.getText();
+					nomJoueur2 = jtfJoueur2.getText();
+					setVisible(false);
+					BatailleNavaleWindow bn = new BatailleNavaleWindow();
+					bn.setVisible(true);
+				}
+				
+				
+				
+			}
+		});
 		
-		//Faire en sorte que l'affichage soit mieux
-		JPanel tinyElements = new JPanel();
-		tinyElements.setLayout(new BorderLayout());
-		tinyElements.add(jpElements, BorderLayout.CENTER);
-		tinyElements.add(new JPanel(), BorderLayout.WEST);
-		tinyElements.add(new JPanel(), BorderLayout.NORTH);
-		tinyElements.add(new JPanel(), BorderLayout.SOUTH);
 		
+		//Layout du BorderLayout
 		this.setLayout(bl);
 		this.add(jlTitle, BorderLayout.NORTH);
-		this.add(tinyElements, BorderLayout.WEST);
 		this.add(jpLaunchButtons, BorderLayout.SOUTH);
+		this.add(choixModeJeu, BorderLayout.WEST);
+		this.add(tField, BorderLayout.EAST);	
+		this.add(erreur, BorderLayout.CENTER);
+		
+		
 	}
+	
+	
 }
