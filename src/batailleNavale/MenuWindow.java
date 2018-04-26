@@ -7,5 +7,4 @@ public class MenuWindow {
 		@SuppressWarnings("unused")
 		MainWindow mw = new MainWindow();
 	}
-
 }
