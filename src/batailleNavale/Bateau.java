@@ -5,12 +5,15 @@ public class Bateau {
 	private boolean turned;
 	private int x;
 	private int[][] taille;
+	//false coulé, true ok
+	private boolean etat;
 	
 	//CONSTRUCTEUR
 	public Bateau(int x) {
 		this.x = x;
 		taille = new int[x][1]; 
 		turned = false;
+		etat = true;
 	}
 	
 	//METHODES

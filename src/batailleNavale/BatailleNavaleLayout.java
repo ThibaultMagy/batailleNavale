@@ -7,6 +7,6 @@ public class BatailleNavaleLayout extends JPanel{
 	//A l'etat 2 c'est au joueur 1 de placer ses bateaux
 	//A l'etat 1 c'est au joueur 2 de placer ses bateaux
 	//A l'état 0 la partie commense
-	
 	private int placeBoatState;
+	
 }
