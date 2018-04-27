@@ -1,9 +1,11 @@
 package batailleNavale;
+import javax.swing.JPanel;
 
-public class Terrain {
+public class Terrain extends JPanel{
 	//ATTRIBUTS
 	private int taille;
 	private int terrain[][];
+	protected static final int TAILLE = 10;
 	
 	//CONSTRUCTEUR
 	//0 case non vide non touchée --> Affichage blanc
@@ -18,6 +20,10 @@ public class Terrain {
 				terrain[i][j]=0;
 			}
 		}
+	}
+	
+	public Terrain() {
+		this(TAILLE);
 	}
 
 	//GETTERS SETTERS

@@ -12,7 +12,8 @@ public class MainWindow extends JFrame {
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setResizable(false);
 
-		this.getContentPane().add(new MenuPanelLayout());
+		MenuPanelLayout mpl = new MenuPanelLayout(this);
+		this.getContentPane().add(mpl);
 		
 		this.setVisible(true);
 	}

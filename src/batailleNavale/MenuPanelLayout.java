@@ -32,11 +32,13 @@ public class MenuPanelLayout extends JPanel{
 	private String nomJoueur1;
 	private String nomJoueur2;
 	private JLabel erreur = new JLabel("");
+	private MainWindow mw;
 	
 	//Choix du type de layout
 	BorderLayout bl = new BorderLayout();
 	
-	public MenuPanelLayout() {
+	public MenuPanelLayout(MainWindow mw) {
+		this.mw=mw;
 		//Titre
 		Font titleFont = new Font("Arial", Font.BOLD, 28);
 		jlTitle.setFont(titleFont);
@@ -101,8 +103,9 @@ public class MenuPanelLayout extends JPanel{
 				else {
 					nomJoueur1 = jtfJoueur1.getText();
 					nomJoueur2 = jtfJoueur2.getText();
-					setVisible(false);
+					mw.setVisible(false);
 					BatailleNavaleWindow bn = new BatailleNavaleWindow();
+					System.out.println("joe lopez");
 					bn.setVisible(true);
 				}
 				
@@ -123,5 +126,9 @@ public class MenuPanelLayout extends JPanel{
 		
 	}
 	
+	//GETTERS SETTERS
+	public MainWindow getMainWindow() {
+		return this.mw;
+	}
 	
 }

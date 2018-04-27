@@ -17,27 +17,26 @@ public class BatailleNavaleLayout extends JPanel{
 	//A l'état 0 la partie commence
 	
 	//ELEMENTS
-	private Terrain j1OwnField;
-	private Terrain j1EnemyField;
-	private Terrain j2OwnField;
-	private Terrain j2EnemyField;
+	private TerrainPhysique j1OwnField;
+	private TerrainPhysique j1EnemyField;
+	private TerrainPhysique j2OwnField;
+	private TerrainPhysique j2EnemyField;
 	
 	//BORDERLAYOUT
 	BorderLayout bl = new BorderLayout();
 	
 	public BatailleNavaleLayout() {
-		for(int i=0; i<j1OwnField.getTaille(); i++) {
-			for(int j=0; j<j1OwnField.getTaille(); j++) {
-				//code a faire
-			}
-		}
-		
-		
-		
-		
+		TerrainPhysique j1EnemyField = new TerrainPhysique();
+		TerrainPhysique j1OwnField = new TerrainPhysique();
+		TerrainPhysique j2EnemyField = new TerrainPhysique();
+		TerrainPhysique j2OwnField = new TerrainPhysique();
 		
 		this.setLayout(bl);
 		
+		
+		
+		this.add(j1EnemyField, BorderLayout.WEST);
+		this.add(j1OwnField, BorderLayout.EAST);
 		
 	}
 }
