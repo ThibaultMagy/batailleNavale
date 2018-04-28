@@ -7,7 +7,7 @@ public class BatailleNavaleWindow extends JFrame{
 
 	public BatailleNavaleWindow() {
 		this.setTitle("Fenetre");
-		this.setSize(1600,800);
+		this.setSize(1800,800);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setResizable(false);
 

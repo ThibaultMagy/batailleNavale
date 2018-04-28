@@ -21,7 +21,7 @@ public class BatailleNavaleLayout extends JPanel{
 	private TerrainPhysique j1EnemyField;
 	private TerrainPhysique j2OwnField;
 	private TerrainPhysique j2EnemyField;
-	
+	private 
 	//BORDERLAYOUT
 	BorderLayout bl = new BorderLayout();
 	
