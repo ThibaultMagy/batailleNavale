@@ -2,6 +2,7 @@ package batailleNavale;
 
 import java.awt.BorderLayout;
 import java.awt.Font;
+import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -25,13 +26,20 @@ public class BatailleNavaleLayout extends JPanel{
 	
 	
 	//ELEMENTS
-	private BatailleNavaleLayout bnl = new BatailleNavaleLayout();
-	private SetUpPanelJ1 suJ1 = new SetUpPanelJ1();
-	private SetUpPanelJ2 suJ2 = new SetUpPanelJ2();
-	private InGamePanel1 igJ1 = new InGamePanel1();
-	private InGamePanel2 igJ2 = new InGamePanel2();
+	private BorderLayout bl;
+	private BatailleNavaleWindow bnw;
+	private SetUpPanelJ1 suJ1 = new SetUpPanelJ1(bnw);
+	//8private SetUpPanelJ2 suJ2 = new SetUpPanelJ2();
+	//private InGamePanel1 igJ1 = new InGamePanel1();
+	//private InGamePanel2 igJ2 = new InGamePanel2();
 	
-	public BatailleNavaleLayout() {
+	public BatailleNavaleLayout(BatailleNavaleWindow bnw) {
+		this.setLayout(bl);
+		this.bnw=bnw;
 		
+		//bnw.getContentPane().removeAll();
+		//bnw.getContentPane().add(suJ1);
+		
+		this.add(suJ1, BorderLayout.CENTER);
 	}
 }
