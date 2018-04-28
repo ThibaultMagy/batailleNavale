@@ -32,7 +32,7 @@ public class BatailleNavaleLayout extends JPanel{
 	private JLabel choixPosJ = new JLabel("Joueur 1, placez vos bateaux sur la grille");
 
 	
-	//test 
+	
 	//BORDERLAYOUT
 	BorderLayout bl = new BorderLayout();
 	
