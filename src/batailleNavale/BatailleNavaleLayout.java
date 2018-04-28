@@ -23,6 +23,14 @@ public class BatailleNavaleLayout extends JPanel{
 	//A l'etat 1 c'est au joueur 2 de placer ses bateaux
 	//A l'état 0 la partie commence
 	
+	
+	//ELEMENTS
+	private BatailleNavaleLayout bnl = new BatailleNavaleLayout();
+	private SetUpPanelJ1 suJ1 = new SetUpPanelJ1();
+	private SetUpPanelJ2 suJ2 = new SetUpPanelJ2();
+	private InGamePanel1 igJ1 = new InGamePanel1();
+	private InGamePanel2 igJ2 = new InGamePanel2();
+	
 	public BatailleNavaleLayout() {
 		
 	}

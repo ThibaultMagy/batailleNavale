@@ -24,7 +24,7 @@ public class SetUpPanelJ1 extends JPanel{
 	//BORDERLAYOUT
 	BorderLayout bl = new BorderLayout();
 	
-	public SetUpPanelJ1(BatailleNavaleWindow bnl) {
+	public SetUpPanelJ1() {
 		this.bnl=bnl;
 		TerrainPhysique j1EnemyField = new TerrainPhysique();
 		TerrainPhysique j1OwnField = new TerrainPhysique();
