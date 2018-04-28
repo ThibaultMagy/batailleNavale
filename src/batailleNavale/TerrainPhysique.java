@@ -48,7 +48,7 @@ public class TerrainPhysique extends Terrain {
 			}
 		}
 	}
-	
+	//dd
 	//METHODES
 	//Methode permettant de vérouiller les boutons du terrain
 	public void verBoutAll() {
