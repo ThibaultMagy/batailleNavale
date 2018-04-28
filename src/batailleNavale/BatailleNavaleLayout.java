@@ -57,7 +57,7 @@ public class BatailleNavaleLayout extends JPanel{
 		});
 		//Positionnement des elements dans le BorderLayout
 		this.add(j1OwnField, BorderLayout.EAST);
-		this.add(j2OwnField, BorderLayout.CENTER);
+		this.add(j2OwnField, BorderLayout.WEST);
 		this.add(choixPosJ, BorderLayout.NORTH);
 		this.add(nextButton, BorderLayout.SOUTH);
 		
