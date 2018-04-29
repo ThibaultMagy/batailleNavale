@@ -105,7 +105,7 @@ public class MenuPanelLayout extends JPanel{
 					nomJoueur2 = jtfJoueur2.getText();
 					mw.setVisible(false);
 					BatailleNavaleWindow bn = new BatailleNavaleWindow();
-					System.out.println("joe lopez");
+					System.out.println("BatailleNavaleWindow créée");
 					bn.setVisible(true);
 				}
 				

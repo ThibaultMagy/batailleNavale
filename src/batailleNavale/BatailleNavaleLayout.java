@@ -28,9 +28,10 @@ public class BatailleNavaleLayout extends JPanel{
 	//ELEMENTS
 	private BatailleNavaleWindow bnw;
 	private SetUpPanel j1su = new SetUpPanel();
+	private SetUpPanel j2su = new SetUpPanel();
+	private JButton jbNext = new JButton("Next");
 
 	BorderLayout bl = new BorderLayout();
-	//8private SetUpPanelJ2 suJ2 = new SetUpPanelJ2();
 	//private InGamePanel1 igJ1 = new InGamePanel1();
 	//private InGamePanel2 igJ2 = new InGamePanel2();
 	
@@ -38,7 +39,20 @@ public class BatailleNavaleLayout extends JPanel{
 		this.setLayout(bl);
 		this.bnw=bnw;
 		bnw.setContentPane(j1su);
+		bnw.repaint();
+		bnw.revalidate();
+		System.out.println("Premier panel");
+		jbNext.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				bnw.setContentPane(j2su);
+				bnw.repaint();
+				bnw.revalidate();
+				System.out.println("Nouveau Panel");
+			}
+		});
 		//Positionnement des elements dans le BorderLayout
-		//this.add(, BorderLayout.CENTER);
+		//this.add(j1su, BorderLayout.CENTER);
+		this.add(jbNext, BorderLayout.SOUTH);
 	}
 }
