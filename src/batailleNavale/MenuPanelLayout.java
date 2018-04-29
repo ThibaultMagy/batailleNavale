@@ -130,5 +130,11 @@ public class MenuPanelLayout extends JPanel{
 	public MainWindow getMainWindow() {
 		return this.mw;
 	}
+	public String getNomJoueur1() {
+		return nomJoueur1;
+	}
+	public String getNomJoueur2() {
+		return nomJoueur2;
+	}
 	
 }
