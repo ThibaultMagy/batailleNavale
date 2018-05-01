@@ -31,9 +31,12 @@ public class BatailleNavaleLayout extends JPanel{
 	private BatailleNavaleWindow bnw;
 	private TerrainPhysique OwnFieldJ1 = new TerrainPhysique();
 	private TerrainPhysique OwnFieldJ2 = new TerrainPhysique();
-	private JLabel jlChoixPosJ = new JLabel("Joueur 1, placez vos bateaux sur la grille");
+	private JLabel jlChoixPosJ = new JLabel(", placez vos bateaux sur la grille");
 	//private SetUpPanel j2su = new SetUpPanel();
 	private JButton jbNext = new JButton("Next");
+	private JLabel erreurJ1 = new JLabel(OwnFieldJ1.getErreur());
+	private JLabel erreurJ2 = new JLabel(OwnFieldJ2.getErreur());
+	
 	
 	
 	
@@ -41,6 +44,11 @@ public class BatailleNavaleLayout extends JPanel{
 	BorderLayout bl = new BorderLayout();
 			
 		public BatailleNavaleLayout(BatailleNavaleWindow bnw) {
+		JPanel Error = new JPanel();
+		Error.setLayout(new BoxLayout(Error,BoxLayout.X_AXIS));
+		Error.add(erreurJ1);
+		Error.add(erreurJ2);
+		erreurJ2.setVisible(false);
 		JPanel Grid = new JPanel();
 		Grid.setLayout(new BoxLayout(Grid,BoxLayout.X_AXIS));
 		Grid.add(OwnFieldJ1);
@@ -58,14 +66,9 @@ public class BatailleNavaleLayout extends JPanel{
 
 		//TEST
 		SousMarin m = new SousMarin();
-<<<<<<< HEAD
-		OwnFieldJ1.placerBateau(m , 3, 3);
-=======
-		SousMarin n = new SousMarin();
-		n.rotation();
-		OwnFieldJ1.placerBateau(m , 2, 2);
-		OwnFieldJ1.placerBateau(n, 1, 1);
->>>>>>> refs/remotes/origin/master
+		m.rotation();
+		OwnFieldJ1.placerBateau(m, 9, 1);
+
 		
 		jbNext.addActionListener(new ActionListener() {
 			@Override
@@ -74,11 +77,14 @@ public class BatailleNavaleLayout extends JPanel{
 				OwnFieldJ2.setVisible(true);
 				jlChoixPosJ.setText("Joueur 2, placez vos bateaux sur la grille");
 				System.out.println("Nouveau Panel");
+				erreurJ1.setVisible(false);
+				erreurJ2.setVisible(true);
 				
 			}
 		});
 		//Positionnement des elements dans le BorderLayout
 		//this.add(j1su, BorderLayout.CENTER);
+		this.add(Error, BorderLayout.CENTER);
 		this.add(jlChoixPosJ, BorderLayout.NORTH);
 		this.add(Grid, BorderLayout.EAST);
 		this.add(jbNext, BorderLayout.SOUTH);
