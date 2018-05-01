@@ -36,7 +36,9 @@ public class Terrain extends JPanel{
 	public void setTerrainEtat(int etat, int i, int j) {
 		this.terrain[i][j]=etat;
 	}
-	
+	public int getTerrainEtat(int i, int j) {
+		return this.terrain[i][j];
+	}
 	//GETTERS SETTERS
 	public int getTaille() {
 		return taille;
