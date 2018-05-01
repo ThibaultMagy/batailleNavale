@@ -60,9 +60,9 @@ public class TerrainPhysique extends Terrain {
 	// Methode permettant la mise en place d'un bateau
 	public void placerBateau(Bateau b, int i, int j) {
 		if (!b.isTurned() && j + b.getX() > this.getTaille()) {
-			System.out.println("Impossible de placer le beateu ici");
+			System.out.println("Impossible de placer le bateau ici !");
 		} else if (b.isTurned() && i + b.getX() > this.getTaille()) {
-			System.out.println("Impossible de placer le bateau ici");
+			System.out.println("Impossible de placer le bateau ici !");
 		} else if (!b.isTurned()) {
 			boolean bool = true;
 			for (int y = j; y < j + b.getX() && bool; y++) {
@@ -71,13 +71,15 @@ public class TerrainPhysique extends Terrain {
 					System.out.println("Impossible de placer un bateau ici, un autre entre en conflit avec !");
 				}
 			}
-			if (bool) {
+			if (bool && !b.isTurned()) {
 				for (int y = j; y < j + b.getX(); y++) {
 					this.setTerrainEtat(1, i, y);
 					bouton[i][y].changeColor(1);
 					verBout(bouton[i][y]);
+					System.out.println(i +","+y);
 				}
-			} else {
+			}
+			else {
 				bool = true;
 				for (int x = i; i < i + b.getX() && bool; i++) {
 					if (this.getTerrainEtat(i, j) == 1) {
@@ -85,14 +87,16 @@ public class TerrainPhysique extends Terrain {
 						System.out.println("Impossible de placer un bateau ici, un autre entre en conflit avec !");
 					}
 				}
-				if (bool) {
-					for (int x = i; i < i + b.getX(); i++) {
-						this.setTerrainEtat(1, x, j);
-						bouton[x][j].changeColor(1);
-						bouton[x][j].changeColor(1);
-						verBout(bouton[x][j]);
-					}
+			}
+			if (bool && b.isTurned()) {
+				for (int x = i; x < i + b.getX(); x++) {
+					this.setTerrainEtat(1, x, j);
+					bouton[x][j].changeColor(1);
+					verBout(bouton[x][j]);
+					System.out.println(x +","+j);
 				}
+			} else {
+				System.out.println("code a remplir");
 			}
 		}
 		// Changer la couleur d'un bouton
