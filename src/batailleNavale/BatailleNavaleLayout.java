@@ -54,10 +54,9 @@ public class BatailleNavaleLayout extends JPanel{
 		
 		//TEST
 		SousMarin m = new SousMarin();
-		SousMarin n = new SousMarin();
-		n.rotation();
-		OwnFieldJ1.placerBateau(m , 2, 2);
-		OwnFieldJ1.placerBateau(n, 1, 1);
+		m.rotation();
+		OwnFieldJ1.placerBateau(m , 1, 1);
+		OwnFieldJ1.placerBateau(m, 2, 1);
 		
 		jbNext.addActionListener(new ActionListener() {
 			@Override

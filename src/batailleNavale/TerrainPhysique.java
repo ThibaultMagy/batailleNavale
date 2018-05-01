@@ -71,15 +71,14 @@ public class TerrainPhysique extends Terrain {
 					System.out.println("Impossible de placer un bateau ici, un autre entre en conflit avec !");
 				}
 			}
-			if (bool && !b.isTurned()) {
+			if (bool) {
 				for (int y = j; y < j + b.getX(); y++) {
 					this.setTerrainEtat(1, i, y);
 					bouton[i][y].changeColor(1);
 					verBout(bouton[i][y]);
-					System.out.println(i +","+y);
+					System.out.println(i + "," + y);
 				}
-			}
-			else {
+			} else {
 				bool = true;
 				for (int x = i; i < i + b.getX() && bool; i++) {
 					if (this.getTerrainEtat(i, j) == 1) {
@@ -88,17 +87,26 @@ public class TerrainPhysique extends Terrain {
 					}
 				}
 			}
-			if (bool && b.isTurned()) {
-				for (int x = i; x < i + b.getX(); x++) {
-					this.setTerrainEtat(1, x, j);
-					bouton[x][j].changeColor(1);
-					verBout(bouton[x][j]);
-					System.out.println(x +","+j);
+		} else {
+			boolean bool = true;
+			for (int y = j; y < j + b.getX() && bool; y++) {
+				if (this.getTerrainEtat(i, j) == 1) {
+					bool = false;
+					System.out.println("Impossible de placer un bateau ici, un autre entre en conflit avec !");
 				}
-			} else {
-				System.out.println("code a remplir");
+				if (bool) {
+
+					for (int x = i; x < i + b.getX(); x++) {
+						this.setTerrainEtat(1, x, j);
+						bouton[x][j].changeColor(1);
+						verBout(bouton[x][j]);
+						System.out.println(x + "," + j);
+					}
+				} else {
+					System.out.println("code a remplir");
+				}
+
 			}
 		}
-		// Changer la couleur d'un bouton
 	}
 }
