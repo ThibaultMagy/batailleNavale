@@ -14,14 +14,21 @@ public class TerrainPhysique extends Terrain {
 		super(taille);
 		bouton = new Bouton[taille][taille];
 		this.setLayout(new GridLayout(taille, taille));
-		setTerrain(taille);
+		setTerrain(taille, taille);
+	}
+	
+	public TerrainPhysique(int taille1, int taille2) {
+		super(taille1);
+		bouton = new Bouton[taille1][taille2];
+		this.setLayout(new GridLayout(taille1,taille2));
+		setTerrain(taille1, taille2);
 	}
 
 	public TerrainPhysique() {
 		this.setPreferredSize(new Dimension(500, 500));
 		bouton = new Bouton[TAILLE][TAILLE];
 		this.setLayout(new GridLayout(TAILLE, TAILLE));
-		setTerrain(TAILLE);
+		setTerrain(TAILLE, TAILLE);
 	}
 
 	// METHODES
@@ -40,9 +47,9 @@ public class TerrainPhysique extends Terrain {
 	}
 
 	// Set un terrain
-	private void setTerrain(int taille) {
-		for (int i = 0; i < taille; i++) {
-			for (int j = 0; j < taille; j++) {
+	private void setTerrain(int taille1, int taille2) {
+		for (int i = 0; i < taille1; i++) {
+			for (int j = 0; j < taille2; j++) {
 				bouton[i][j] = new Bouton();
 				if (i == 0 || j == 0) {
 					if (i == 0 && j > 0) {
