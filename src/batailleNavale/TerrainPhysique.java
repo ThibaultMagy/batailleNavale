@@ -17,10 +17,10 @@ public class TerrainPhysique extends Terrain {
 				bouton[i][j] = new Bouton();
 				if(i==0 || j==0) {
 					if(i==0 && j>0) {
-						bouton[i][j].setText("a"+(i-1));
+						bouton[i][j].setText(Character.toString((char) ('a'+(j-1))));
 					}
 					else if(i>0 && j==0) {
-						bouton[i][j].setText(String.valueOf((i-1)+1));
+						bouton[i][j].setText(String.valueOf((i)));
 					}
 					verBout(bouton[i][j]);
 				}
@@ -37,7 +37,7 @@ public class TerrainPhysique extends Terrain {
 				bouton[i][j] = new Bouton();
 				if(i==0 || j==0) {
 					if(i==0 && j>0) {
-						bouton[i][j].setText("a"+(i-1));
+						bouton[i][j].setText(Character.toString((char) ('a'+(j-1))));
 					}
 					else if(i>0 && j==0) {
 						bouton[i][j].setText(String.valueOf((i)));
