@@ -51,6 +51,11 @@ public class BatailleNavaleLayout extends JPanel{
 		jlChoixPosJ.setHorizontalAlignment(SwingConstants.CENTER);
 		this.setLayout(bl);
 		System.out.println("Premier panel");
+		
+		//TEST
+		SousMarin m = new SousMarin();
+		OwnFieldJ1.placerBateau(m , 3, 3);
+		
 		jbNext.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {

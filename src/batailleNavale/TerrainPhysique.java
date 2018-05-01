@@ -73,8 +73,9 @@ public class TerrainPhysique extends Terrain {
 			}
 			if (bool) {
 				for (int y = j; y < j + b.getX(); y++) {
-					this.setTerrainEtat(1, i, j);
-					verBout(bouton[i][j]);
+					this.setTerrainEtat(1, i, y);
+					bouton[i][y].changeColor(1);
+					verBout(bouton[i][y]);
 				}
 			} else {
 				bool = true;
@@ -86,8 +87,10 @@ public class TerrainPhysique extends Terrain {
 				}
 				if (bool) {
 					for (int x = i; i < i + b.getX(); i++) {
-						this.setTerrainEtat(1, i, j);
-						verBout(bouton[i][j]);
+						this.setTerrainEtat(1, x, j);
+						bouton[x][j].changeColor(1);
+						bouton[x][j].changeColor(1);
+						verBout(bouton[x][j]);
 					}
 				}
 			}
