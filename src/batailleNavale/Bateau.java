@@ -11,7 +11,7 @@ public class Bateau {
 	//CONSTRUCTEUR
 	public Bateau(int x) {
 		this.x = x;
-		taille = new int[x][1]; 
+		taille = new int[1][x]; 
 		turned = false;
 		etat = true;
 	}
@@ -23,11 +23,11 @@ public class Bateau {
 			System.out.println("Il ne sert a rien d'effectuer une rotation sur un element de taille 1 !");
 		}
 		else if(turned==false) {
-			taille = new int[1][x];
+			taille = new int[x][1];
 			turned=true;
 		}
 		else {
-			taille = new int[x][1];
+			taille = new int[1][x];
 			turned=false;
 		}
 	}

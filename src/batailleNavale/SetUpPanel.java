@@ -10,7 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-public class SetUpPanel extends JPanel{
+public class SetUpPanel extends JPanel {
 	//ELEMENTS
 	private BatailleNavaleWindow bnw;
 	private TerrainPhysique OwnField = new TerrainPhysique();
@@ -33,6 +33,5 @@ public class SetUpPanel extends JPanel{
 		//Positionnement des elements dans le BorderLayout
 		this.add(jlChoixPosJ, BorderLayout.NORTH);
 		this.add(OwnField, BorderLayout.CENTER);
-		
 	}
 }

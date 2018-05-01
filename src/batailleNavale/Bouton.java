@@ -12,7 +12,6 @@ public class Bouton extends JButton implements ActionListener {
 		this.addActionListener(this);
 		this.setBackground(Color.white);
 	}
-
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==this) {
