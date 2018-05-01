@@ -12,6 +12,7 @@ public class Terrain extends JPanel{
 	//1 case vide touchée --> Affichage gris
 	//2 case occupée non touchée --> verte
 	//3 case occupée touchée --> rouge
+	//CONSTRUCTEURS
 	public Terrain(int taille) {
 		if(taille>26) {
 			this.taille=26;
@@ -31,6 +32,11 @@ public class Terrain extends JPanel{
 		this(TAILLE);
 	}
 
+	//METHODES
+	public void setTerrainEtat(int etat, int i, int j) {
+		this.terrain[i][j]=etat;
+	}
+	
 	//GETTERS SETTERS
 	public int getTaille() {
 		return taille;

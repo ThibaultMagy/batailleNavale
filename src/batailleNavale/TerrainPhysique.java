@@ -61,6 +61,18 @@ public class TerrainPhysique extends Terrain {
 		else if(b.isTurned() && i+b.getX()>this.getTaille()) {
 			System.out.println("Impossible de placer le bateau ici");
 		}
+		else if(!b.isTurned()) {
+			
+			for(int y=j; y<j+b.getX();y++) {
+				this.setTerrainEtat(1, i, j);
+				verBout(bouton[i][j]);
+			}
+		}
+		else {
+			for(int x=i; i<i+b.getX();i++)
+				this.setTerrainEtat(1, i, j);
+				verBout(bouton[i][j]);
+		}
 	}
 	//Changer la couleur d'un bouton
 }
