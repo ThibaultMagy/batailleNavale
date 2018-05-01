@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 public class TerrainPhysique extends Terrain {
 	// ATTRIBUTS
 	private Bouton[][] bouton;
-
+	//
 	// CONSTRUCTEURS
 	public TerrainPhysique(int taille) {
 		super(taille);
