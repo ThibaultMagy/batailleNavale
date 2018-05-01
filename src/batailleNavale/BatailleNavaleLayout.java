@@ -2,9 +2,11 @@ package batailleNavale;
 
 import java.awt.BorderLayout;
 import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -25,37 +27,45 @@ public class BatailleNavaleLayout extends JPanel{
 	
 	
 	//ELEMENTS
-	private BatailleNavaleLayout bnl = new BatailleNavaleLayout();
-	private SetUpPanelJ1 suJ1 = new SetUpPanelJ1();
-	private SetUpPanelJ2 suJ2 = new SetUpPanelJ2();
-	private InGamePanel1 igJ1 = new InGamePanel1();
-	private InGamePanel2 igJ2 = new InGamePanel2();
+
+	private BatailleNavaleWindow bnw;
+	private TerrainPhysique OwnFieldJ1 = new TerrainPhysique();
+	private TerrainPhysique OwnFieldJ2 = new TerrainPhysique();
+	private JLabel jlChoixPosJ = new JLabel("Joueur 1, placez vos bateaux sur la grille");
+	//private SetUpPanel j2su = new SetUpPanel();
+	private JButton jbNext = new JButton("Next");
 	
-	public BatailleNavaleLayout() {
-		TerrainPhysique j1EnemyField = new TerrainPhysique();
-		TerrainPhysique j1OwnField = new TerrainPhysique();
-		TerrainPhysique j2OwnField = new TerrainPhysique();
-		TerrainPhysique j2EnemyField = new TerrainPhysique();
-		
-		j2OwnField.setVisible(false);
+	
+	
+
+	BorderLayout bl = new BorderLayout();
+			
+		public BatailleNavaleLayout(BatailleNavaleWindow bnw) {
+		JPanel Grid = new JPanel();
+		Grid.setLayout(new BoxLayout(Grid,BoxLayout.X_AXIS));
+		Grid.add(OwnFieldJ1);
+		Grid.add(OwnFieldJ2);
+		OwnFieldJ2.setVisible(false);
 		Font titleFont = new Font("Arial", Font.BOLD, 28);
-		choixPosJ.setFont(titleFont);
-		choixPosJ.setHorizontalAlignment(SwingConstants.CENTER);
+		jlChoixPosJ.setFont(titleFont);
+		jlChoixPosJ.setHorizontalAlignment(SwingConstants.CENTER);
 		this.setLayout(bl);
-		nextButton.addActionListener(new ActionListener() {
+		System.out.println("Premier panel");
+		jbNext.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				j1OwnField.setVisible(false);
-				System.out.println("joe lopez");
-				j2OwnField.setVisible(true);
-				choixPosJ.setText("Joueur 2, placez vos bateaux sur la grille");
+				OwnFieldJ1.setVisible(false);
+				OwnFieldJ2.setVisible(true);
+				jlChoixPosJ.setText("Joueur 2, placez vos bateaux sur la grille");
+				System.out.println("Nouveau Panel");
+				
 			}
 		});
 		//Positionnement des elements dans le BorderLayout
-		this.add(j1OwnField, BorderLayout.EAST);
-		this.add(j2OwnField, BorderLayout.WEST);
-		this.add(choixPosJ, BorderLayout.NORTH);
-		this.add(nextButton, BorderLayout.SOUTH);
-		
+		//this.add(j1su, BorderLayout.CENTER);
+		this.add(jlChoixPosJ, BorderLayout.NORTH);
+		this.add(Grid, BorderLayout.EAST);
+		this.add(jbNext, BorderLayout.SOUTH);
+
 	}
 }
