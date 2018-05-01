@@ -52,11 +52,13 @@ public class BatailleNavaleLayout extends JPanel{
 		this.setLayout(bl);
 		System.out.println("Premier panel");
 		
+
+
 		
+
 		//TEST
 		SousMarin m = new SousMarin();
-		OwnFieldJ1.placerBateau(m, 1, 1);
-		
+		OwnFieldJ1.placerBateau(m , 3, 3);
 		
 		jbNext.addActionListener(new ActionListener() {
 			@Override
