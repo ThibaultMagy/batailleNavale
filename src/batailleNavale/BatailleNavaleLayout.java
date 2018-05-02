@@ -1,11 +1,11 @@
 package batailleNavale;
 
 import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.concurrent.BrokenBarrierException;
 
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
@@ -38,6 +38,8 @@ public class BatailleNavaleLayout extends JPanel {
 	private JLabel jlChoixPosJ = new JLabel(jlNomJ1 + ", placez vos bateaux sur la grille");
 	private JPanel glAffichageBateauxJ1 = new JPanel();
 	private JPanel glAffichageBateauxJ2 = new JPanel();
+	private Joueur j1 = new Joueur();
+	private Joueur j2 = new Joueur();
 	
 	// private SetUpPanel j2su = new SetUpPanel();
 	private JButton jbNext = new JButton("Next");
@@ -69,10 +71,15 @@ public class BatailleNavaleLayout extends JPanel {
 		group2.add(jbrTorpilleur);
 		//BATEAUX
 		TerrainPhysique tpPorteAvion = new TerrainPhysique(1,5);
+		tpPorteAvion.removeText();
 		TerrainPhysique tpCroiseur = new TerrainPhysique(1,4);
+		tpCroiseur.removeText();
 		TerrainPhysique tpContreTorpilleur = new TerrainPhysique(1,3);
+		tpContreTorpilleur.removeText();
 		TerrainPhysique tpSousMarin = new TerrainPhysique(1,2);
+		tpSousMarin.removeText();
 		TerrainPhysique tpTorpilleur = new TerrainPhysique(1,2);
+		tpTorpilleur.removeText();
 		//JLABELS
 		JLabel nbPorteAvion = new JLabel("1");
 		JLabel nbCroiseur = new JLabel("1");
@@ -80,30 +87,42 @@ public class BatailleNavaleLayout extends JPanel {
 		JLabel nbSousMarin = new JLabel("1");
 		JLabel nbTorpilleur = new JLabel("1");	
 		//GRIDLAYOUT
-		glAffichageBateauxJ1.setLayout(new GridLayout(10,3));
-		glAffichageBateauxJ1.add(new JLabel("Choix : "));
-		glAffichageBateauxJ1.add(jrbHorizontal);
-		glAffichageBateauxJ1.add(jrbVertical);
+		JPanel choix = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		choix.add(new JLabel("Choix :"));
+		choix.add(jrbHorizontal);
+		choix.add(jrbVertical);
+		glAffichageBateauxJ1.setLayout(new GridLayout(10,1));
+		glAffichageBateauxJ1.add(choix);
 		//ADD
-		glAffichageBateauxJ1.add(jbrPorteAvion);
-		glAffichageBateauxJ1.add(tpPorteAvion);
-		glAffichageBateauxJ1.add(nbPorteAvion);
+		JPanel bateau1 = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		bateau1.add(jbrPorteAvion);
+		bateau1.add(tpPorteAvion);
+		bateau1.add(nbPorteAvion);
+		glAffichageBateauxJ1.add(bateau1);
 		
-		glAffichageBateauxJ1.add(jbrCroiseur);
-		glAffichageBateauxJ1.add(tpCroiseur);
-		glAffichageBateauxJ1.add(nbCroiseur);
+		JPanel bateau2 = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		bateau2.add(jbrCroiseur);
+		bateau2.add(tpCroiseur);
+		bateau2.add(nbCroiseur);
+		glAffichageBateauxJ1.add(bateau2);
 		
-		glAffichageBateauxJ1.add(jbrContreTorpilleur);
-		glAffichageBateauxJ1.add(tpContreTorpilleur);
-		glAffichageBateauxJ1.add(nbContreTorpilleur);
+		JPanel bateau3 = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		bateau3.add(jbrContreTorpilleur);
+		bateau3.add(tpContreTorpilleur);
+		bateau3.add(nbContreTorpilleur);
+		glAffichageBateauxJ1.add(bateau3);
+
+		JPanel bateau4 = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		bateau4.add(jbrSousMarin);
+		bateau4.add(tpSousMarin);
+		bateau4.add(nbSousMarin);
+		glAffichageBateauxJ1.add(bateau4);
 		
-		glAffichageBateauxJ1.add(jbrSousMarin);
-		glAffichageBateauxJ1.add(tpSousMarin);
-		glAffichageBateauxJ1.add(nbSousMarin);
-		
-		glAffichageBateauxJ1.add(jbrTorpilleur);
-		glAffichageBateauxJ1.add(tpTorpilleur);
-		glAffichageBateauxJ1.add(nbTorpilleur);
+		JPanel bateau5 = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		bateau5.add(jbrTorpilleur);
+		bateau5.add(tpTorpilleur);
+		bateau5.add(nbTorpilleur);
+		glAffichageBateauxJ1.add(bateau5);
 		
 		
 		JPanel Grid = new JPanel();
@@ -117,6 +136,13 @@ public class BatailleNavaleLayout extends JPanel {
 		this.setLayout(bl);
 		System.out.println("Premier panel");
 
+		//PLACEMENT DES ELEMENTS
+		int i=0;
+		//while(OwnFieldJ1.getNbTerrainPlace()<5) {
+			//ECRIRE LE CODE
+			/*FAIRE EN SORTE QU'Y IL EST DES LISTENER SUR LES RADIOBUTTONS*/
+		//}
+		
 		// TEST
 		SousMarin m = new SousMarin();
 		m.rotation();
@@ -136,7 +162,7 @@ public class BatailleNavaleLayout extends JPanel {
 		// Positionnement des elements dans le BorderLayout
 		// this.add(j1su, BorderLayout.CENTER);
 		this.add(jlChoixPosJ, BorderLayout.NORTH);
-		this.add(glAffichageBateauxJ1, BorderLayout.CENTER);
+		this.add(glAffichageBateauxJ1, BorderLayout.WEST);
 		this.add(Grid, BorderLayout.EAST);
 		this.add(jbNext, BorderLayout.SOUTH);
 
