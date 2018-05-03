@@ -1,5 +1,3 @@
-
-
 package batailleNavale;
 
 import java.awt.Dimension;
@@ -7,15 +5,11 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class TerrainPhysique extends Terrain implements ActionListener {
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	// ATTRIBUTS
+public class TerrainPhysique extends Terrain {
+    // ATTRIBUTS
     private Bouton[][] bouton;
-    private TerrainPhysique terrainPhysique;
     private int nbBateauPlace;
+    private boolean aEtePose;
     //
     // CONSTRUCTEURS
     public TerrainPhysique(int taille) {
@@ -24,6 +18,7 @@ public class TerrainPhysique extends Terrain implements ActionListener {
         this.setLayout(new GridLayout(taille, taille));
         setTerrain(taille, taille);
         nbBateauPlace=0;
+        aEtePose=false;
     }
     
     public TerrainPhysique(int taille1, int taille2) {
@@ -32,6 +27,7 @@ public class TerrainPhysique extends Terrain implements ActionListener {
         this.setLayout(new GridLayout(taille1,taille2));
         setTerrain(taille1, taille2);
         nbBateauPlace=0;
+        aEtePose=false;
     }
 
     public TerrainPhysique() {
@@ -39,6 +35,8 @@ public class TerrainPhysique extends Terrain implements ActionListener {
         bouton = new Bouton[TAILLE][TAILLE];
         this.setLayout(new GridLayout(TAILLE, TAILLE));
         setTerrain(TAILLE, TAILLE);
+        nbBateauPlace=0;
+        aEtePose=false;
     }
 
     // METHODES
@@ -56,7 +54,6 @@ public class TerrainPhysique extends Terrain implements ActionListener {
         b.setEnabled(false);
     }
 
-<<<<<<< HEAD
     // Set un terrain
     private void setTerrain(int taille1, int taille2) {
         for (int i = 0; i < taille1; i++) {
@@ -70,6 +67,8 @@ public class TerrainPhysique extends Terrain implements ActionListener {
                     }
                     verBout(bouton[i][j]);
                 }
+                bouton[i][j].setPosX(i);
+                bouton[i][j].setPosY(j);
                 this.add(bouton[i][j]);
             }
         }
@@ -81,37 +80,10 @@ public class TerrainPhysique extends Terrain implements ActionListener {
             bouton[0][j].setText("");
         }
     }
-=======
-	// Set un terrain
-	private void setTerrain(int taille1, int taille2) {
-		for (int i = 0; i < taille1; i++) {
-			for (int j = 0; j < taille2; j++) {
-				bouton[i][j] = new Bouton();
-				if (i == 0 || j == 0) {
-					if (i == 0 && j > 0) {
-						bouton[i][j].setText(Character.toString((char) ('a' + (j - 1))));
-					} else if (i > 0 && j == 0) {
-						bouton[i][j].setText(String.valueOf((i)));
-					}
-					verBout(bouton[i][j]);
-				}
-				bouton[i][j].setPosX(i);
-				bouton[i][j].setPosY(j);
-				this.add(bouton[i][j]);
-			}
-		}
-	}
-	
-	//Methode pour enlever le texte de chaque case
-	public void removeText() {
-		for(int j=1; j<this.getTaille(); j++) {
-			bouton[0][j].setText("");
-		}
-	}
->>>>>>> refs/remotes/origin/master
 
     // Methode permettant la mise en place d'un bateau
     public void placerBateau(Bateau b, int i, int j) {
+        this.aEtePose=false;
         if (!b.isTurned() && j + b.getX() > this.getTaille()) {
             System.out.println("Impossible de placer le bateau ici !");
         } else if (b.isTurned() && i + b.getX() > this.getTaille()) {
@@ -131,6 +103,7 @@ public class TerrainPhysique extends Terrain implements ActionListener {
                     verBout(bouton[i][y]);
                     System.out.println(i + "," + y);
                     this.nbBateauPlace+=1;
+                    this.aEtePose=true;
                 }
             } else {
                 bool = true;
@@ -156,6 +129,7 @@ public class TerrainPhysique extends Terrain implements ActionListener {
                         verBout(bouton[x][j]);
                         System.out.println(x + "," + j);
                         this.nbBateauPlace+=1;
+                        this.aEtePose=true;
                     }
                 } else {
                     System.out.println("code a remplir");
@@ -169,25 +143,12 @@ public class TerrainPhysique extends Terrain implements ActionListener {
     public int getNbTerrainPlace() {
         return this.nbBateauPlace;
     }
-    @SuppressWarnings("unused")
-	private void ajoutActionListener() {
-    	for(int x=0; x<10; x++) {
-    		for(int y=0; y<10; y++) {
-    			Bouton Bouton = (Bouton)this.terrainPhysique.getComponent((x+1)*11+y+1);
-    			Bouton.addActionListener(this);;
-    			System.out.println(x);
-        		System.out.println(y);
-    			}
-    	
-    		}
+    public Bouton[][] getBouton() {
+        return this.bouton;
     }
-
-	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		System.out.println("idk");
-		
-	}
-	public Bouton[][] getBouton() {
-		return this.bouton;
-	}
+    
+    public boolean getAEtePose() {
+        return aEtePose;
+    }
 }
+
