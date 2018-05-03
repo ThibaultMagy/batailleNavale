@@ -62,6 +62,8 @@ public class TerrainPhysique extends Terrain {
 					}
 					verBout(bouton[i][j]);
 				}
+				bouton[i][j].setPosX(i);
+				bouton[i][j].setPosY(j);
 				this.add(bouton[i][j]);
 			}
 		}
@@ -132,5 +134,8 @@ public class TerrainPhysique extends Terrain {
 	//GETTERS SETTERS
 	public int getNbTerrainPlace() {
 		return this.nbBateauPlace;
+	}
+	public Bouton[][] getBouton() {
+		return this.bouton;
 	}
 }

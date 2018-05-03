@@ -14,8 +14,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.SwingConstants;
+import javax.swing.text.View;
 
-public class BatailleNavaleLayout extends JPanel {
+@SuppressWarnings("serial")
+public class BatailleNavaleLayout extends JPanel implements ActionListener {
 	// Etapes
 	// 1 Joueur 1 place ses bateaux et confirme son placement
 	// Un ecran noir avec un bouton continuer apparait
@@ -46,6 +48,12 @@ public class BatailleNavaleLayout extends JPanel {
 
 	BorderLayout bl = new BorderLayout();
 
+	//definir si horizontal ou vertical
+	private boolean isVertical=false;
+	private Bateau bateauAPoser;
+	private int x;
+	private int y;
+	
 	public BatailleNavaleLayout(BatailleNavaleWindow bnw) {
 		jlNomJ1 = new JLabel(mpl.getNomJoueur1());
 		jlNomJ2 = new JLabel(mpl.getNomJoueur2());
@@ -136,6 +144,54 @@ public class BatailleNavaleLayout extends JPanel {
 		this.setLayout(bl);
 		System.out.println("Premier panel");
 
+		//ACTION BOUTONS
+		jrbHorizontal.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				isVertical=false;
+			}
+		});
+		jrbVertical.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				isVertical=true;
+			}
+		});
+		jbrPorteAvion.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				bateauAPoser = j1.getBateaux()[0];
+			}
+		});
+		jbrCroiseur.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				bateauAPoser = j1.getBateaux()[1];
+			}
+		});
+		jbrContreTorpilleur.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				bateauAPoser = j1.getBateaux()[2];
+			}
+		});
+		jbrSousMarin.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				bateauAPoser = j1.getBateaux()[3];
+			}
+		});
+		jbrTorpilleur.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				bateauAPoser = j1.getBateaux()[4];
+			}
+		});
+		for(x=0; x<OwnFieldJ1.getTaille()-1; x++) {
+			for(y=0; y<OwnFieldJ1.getTaille()-1; y++) {
+				OwnFieldJ1.getBouton()[x][y].addActionListener(this);
+			}
+		}
 		//PLACEMENT DES ELEMENTS
 		int i=0;
 		//while(OwnFieldJ1.getNbTerrainPlace()<5) {
@@ -166,5 +222,17 @@ public class BatailleNavaleLayout extends JPanel {
 		this.add(Grid, BorderLayout.EAST);
 		this.add(jbNext, BorderLayout.SOUTH);
 
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		for(x=0; x<OwnFieldJ1.getTaille()-1; x++) {
+			for(y=0; y<OwnFieldJ1.getTaille()-1; y++) {
+				if(e.getSource()==OwnFieldJ1.getBouton()[x][y]) {
+					System.out.println(bateauAPoser);
+					OwnFieldJ1.placerBateau(bateauAPoser, x, y);
+				}
+			}
+		}
 	}
 }

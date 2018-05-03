@@ -5,6 +5,7 @@ public class Bateau {
 	private boolean turned;
 	private int x;
 	private int[][] taille;
+	boolean estPose;
 	//false coulé, true ok
 	private boolean etat;
 	
@@ -14,6 +15,7 @@ public class Bateau {
 		taille = new int[1][x]; 
 		turned = false;
 		etat = true;
+		estPose=false;
 	}
 	
 	//METHODES
@@ -56,5 +58,8 @@ public class Bateau {
 	}
 	public void setEtat(boolean etat) {
 		this.etat = etat;
+	}
+	public void poser() {
+		this.estPose=true;
 	}
 }
