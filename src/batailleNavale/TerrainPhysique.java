@@ -56,6 +56,7 @@ public class TerrainPhysique extends Terrain implements ActionListener {
         b.setEnabled(false);
     }
 
+<<<<<<< HEAD
     // Set un terrain
     private void setTerrain(int taille1, int taille2) {
         for (int i = 0; i < taille1; i++) {
@@ -80,6 +81,34 @@ public class TerrainPhysique extends Terrain implements ActionListener {
             bouton[0][j].setText("");
         }
     }
+=======
+	// Set un terrain
+	private void setTerrain(int taille1, int taille2) {
+		for (int i = 0; i < taille1; i++) {
+			for (int j = 0; j < taille2; j++) {
+				bouton[i][j] = new Bouton();
+				if (i == 0 || j == 0) {
+					if (i == 0 && j > 0) {
+						bouton[i][j].setText(Character.toString((char) ('a' + (j - 1))));
+					} else if (i > 0 && j == 0) {
+						bouton[i][j].setText(String.valueOf((i)));
+					}
+					verBout(bouton[i][j]);
+				}
+				bouton[i][j].setPosX(i);
+				bouton[i][j].setPosY(j);
+				this.add(bouton[i][j]);
+			}
+		}
+	}
+	
+	//Methode pour enlever le texte de chaque case
+	public void removeText() {
+		for(int j=1; j<this.getTaille(); j++) {
+			bouton[0][j].setText("");
+		}
+	}
+>>>>>>> refs/remotes/origin/master
 
     // Methode permettant la mise en place d'un bateau
     public void placerBateau(Bateau b, int i, int j) {
@@ -157,5 +186,8 @@ public class TerrainPhysique extends Terrain implements ActionListener {
 	public void actionPerformed(ActionEvent arg0) {
 		System.out.println("idk");
 		
+	}
+	public Bouton[][] getBouton() {
+		return this.bouton;
 	}
 }
