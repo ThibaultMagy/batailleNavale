@@ -11,7 +11,7 @@ public class Joueur {
 		etat = true;
 	}
 	
-	public Joueur(boolean etat) {
+	public Joueur() {
 		PorteAvion pt = new PorteAvion();
 		Croiseur c = new Croiseur();
 		ContreTorpilleur ct = new ContreTorpilleur();

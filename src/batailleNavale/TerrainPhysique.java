@@ -1,3 +1,5 @@
+
+
 package batailleNavale;
 
 import java.awt.Dimension;
@@ -5,10 +7,15 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class TerrainPhysique extends Terrain {
-    // ATTRIBUTS
+public class TerrainPhysique extends Terrain implements ActionListener {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	// ATTRIBUTS
     private Bouton[][] bouton;
-	private String erreur;
+    private TerrainPhysique terrainPhysique;
+    private int nbBateauPlace;
     //
     // CONSTRUCTEURS
     public TerrainPhysique(int taille) {
@@ -16,6 +23,7 @@ public class TerrainPhysique extends Terrain {
         bouton = new Bouton[taille][taille];
         this.setLayout(new GridLayout(taille, taille));
         setTerrain(taille, taille);
+        nbBateauPlace=0;
     }
     
     public TerrainPhysique(int taille1, int taille2) {
@@ -23,6 +31,7 @@ public class TerrainPhysique extends Terrain {
         bouton = new Bouton[taille1][taille2];
         this.setLayout(new GridLayout(taille1,taille2));
         setTerrain(taille1, taille2);
+        nbBateauPlace=0;
     }
 
     public TerrainPhysique() {
@@ -64,6 +73,13 @@ public class TerrainPhysique extends Terrain {
             }
         }
     }
+    
+    //Methode pour enlever le texte de chaque case
+    public void removeText() {
+        for(int j=1; j<this.getTaille(); j++) {
+            bouton[0][j].setText("");
+        }
+    }
 
     // Methode permettant la mise en place d'un bateau
     public void placerBateau(Bateau b, int i, int j) {
@@ -85,6 +101,7 @@ public class TerrainPhysique extends Terrain {
                     bouton[i][y].changeColor(1);
                     verBout(bouton[i][y]);
                     System.out.println(i + "," + y);
+                    this.nbBateauPlace+=1;
                 }
             } else {
                 bool = true;
@@ -109,6 +126,7 @@ public class TerrainPhysique extends Terrain {
                         bouton[x][j].changeColor(1);
                         verBout(bouton[x][j]);
                         System.out.println(x + "," + j);
+                        this.nbBateauPlace+=1;
                     }
                 } else {
                     System.out.println("code a remplir");
@@ -117,10 +135,27 @@ public class TerrainPhysique extends Terrain {
             }
         }
     }
+    
+    //GETTERS SETTERS
+    public int getNbTerrainPlace() {
+        return this.nbBateauPlace;
+    }
+    @SuppressWarnings("unused")
+	private void ajoutActionListener() {
+    	for(int x=0; x<10; x++) {
+    		for(int y=0; y<10; y++) {
+    			Bouton Bouton = (Bouton)this.terrainPhysique.getComponent((x+1)*11+y+1);
+    			Bouton.addActionListener(this);;
+    			System.out.println(x);
+        		System.out.println(y);
+    			}
+    	
+    		}
+    }
 
-	public String getErreur() {
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		System.out.println("idk");
 		
-		
-		return erreur;
 	}
 }
