@@ -3,7 +3,7 @@ package batailleNavale;
 public class SousMarin extends Bateau {
 
 	public SousMarin() {
-		super(3);
+		super(2);
 	}
 	
 }
