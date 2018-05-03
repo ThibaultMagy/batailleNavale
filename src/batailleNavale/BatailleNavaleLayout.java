@@ -1,12 +1,14 @@
 package batailleNavale;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -45,10 +47,24 @@ public class BatailleNavaleLayout extends JPanel implements ActionListener {
 	
 	// private SetUpPanel j2su = new SetUpPanel();
 	private JButton jbNext = new JButton("Next");
+	private JButton jbReset = new JButton("Reset");
 
 	BorderLayout bl = new BorderLayout();
 
 	//definir si horizontal ou vertical
+	private JRadioButton jbrPorteAvion = new JRadioButton("");
+	private JRadioButton jbrCroiseur = new JRadioButton("");
+	private JRadioButton jbrContreTorpilleur = new JRadioButton("");
+	private JRadioButton jbrSousMarin = new JRadioButton("");
+	private JRadioButton jbrTorpilleur = new JRadioButton("");
+	ButtonGroup group2 = new ButtonGroup();
+	//JLABELS
+	private JLabel nbPorteAvion = new JLabel("1");
+	private JLabel nbCroiseur = new JLabel("1");
+	private JLabel nbContreTorpilleur = new JLabel("1");
+	private JLabel nbSousMarin = new JLabel("1");
+	private JLabel nbTorpilleur = new JLabel("1");	
+	
 	private boolean isVertical=false;
 	private Bateau bateauAPoser;
 	private int x;
@@ -58,6 +74,12 @@ public class BatailleNavaleLayout extends JPanel implements ActionListener {
 		jlNomJ1 = new JLabel(mpl.getNomJoueur1());
 		jlNomJ2 = new JLabel(mpl.getNomJoueur2());
 		
+		JPanel boutonNextReset = new JPanel();
+		boutonNextReset.setLayout(new BoxLayout(boutonNextReset,BoxLayout.X_AXIS));
+		boutonNextReset.add(jbReset);
+		boutonNextReset.add(Box.createRigidArea(new Dimension(800,0)));
+		boutonNextReset.add(jbNext);
+		
 		//AFFICHAGE BATEAU A PLACER
 		//Choix placement horizontal ou vertical
 		JRadioButton jrbHorizontal = new JRadioButton("Horizontal");
@@ -66,12 +88,6 @@ public class BatailleNavaleLayout extends JPanel implements ActionListener {
 		group1.add(jrbHorizontal);
 		group1.add(jrbVertical);
 		//Choix du bateau a placer
-		JRadioButton jbrPorteAvion = new JRadioButton("");
-		JRadioButton jbrCroiseur = new JRadioButton("");
-		JRadioButton jbrContreTorpilleur = new JRadioButton("");
-		JRadioButton jbrSousMarin = new JRadioButton("");
-		JRadioButton jbrTorpilleur = new JRadioButton("");
-		ButtonGroup group2 = new ButtonGroup();
 		group2.add(jbrPorteAvion);
 		group2.add(jbrCroiseur);
 		group2.add(jbrContreTorpilleur);
@@ -88,12 +104,6 @@ public class BatailleNavaleLayout extends JPanel implements ActionListener {
 		tpSousMarin.removeText();
 		TerrainPhysique tpTorpilleur = new TerrainPhysique(1,2);
 		tpTorpilleur.removeText();
-		//JLABELS
-		JLabel nbPorteAvion = new JLabel("1");
-		JLabel nbCroiseur = new JLabel("1");
-		JLabel nbContreTorpilleur = new JLabel("1");
-		JLabel nbSousMarin = new JLabel("1");
-		JLabel nbTorpilleur = new JLabel("1");	
 		//GRIDLAYOUT
 		JPanel choix = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		choix.add(new JLabel("Choix :"));
@@ -187,8 +197,8 @@ public class BatailleNavaleLayout extends JPanel implements ActionListener {
 				bateauAPoser = j1.getBateaux()[4];
 			}
 		});
-		for(x=0; x<OwnFieldJ1.getTaille()-1; x++) {
-			for(y=0; y<OwnFieldJ1.getTaille()-1; y++) {
+		for(x=0; x<OwnFieldJ1.getTaille(); x++) {
+			for(y=0; y<OwnFieldJ1.getTaille(); y++) {
 				OwnFieldJ1.getBouton()[x][y].addActionListener(this);
 			}
 		}
@@ -201,9 +211,7 @@ public class BatailleNavaleLayout extends JPanel implements ActionListener {
 		
 		// TEST
 		SousMarin m = new SousMarin();
-		m.rotation();
-		OwnFieldJ1.placerBateau(m, 1, 1);
-		OwnFieldJ1.placerBateau(m, 2, 1);
+		OwnFieldJ1.placerBateau(m, 10, 1);
 
 		jbNext.addActionListener(new ActionListener() {
 			@Override
@@ -215,22 +223,77 @@ public class BatailleNavaleLayout extends JPanel implements ActionListener {
 
 			}
 		});
+		
+		
+		jbReset.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				OwnFieldJ1.resetField();
+				jbrPorteAvion.setEnabled(true);
+				nbPorteAvion.setText("1");
+				jbrCroiseur.setEnabled(true);
+				nbCroiseur.setText("1");
+				jbrContreTorpilleur.setEnabled(true);
+				nbContreTorpilleur.setText("1");
+				jbrSousMarin.setEnabled(true);
+				nbSousMarin.setText("1");
+				jbrTorpilleur.setEnabled(true);
+				nbTorpilleur.setText("1");
+				
+				
+			}
+		});
 		// Positionnement des elements dans le BorderLayout
 		// this.add(j1su, BorderLayout.CENTER);
 		this.add(jlChoixPosJ, BorderLayout.NORTH);
 		this.add(glAffichageBateauxJ1, BorderLayout.WEST);
 		this.add(Grid, BorderLayout.EAST);
-		this.add(jbNext, BorderLayout.SOUTH);
+		this.add(boutonNextReset, BorderLayout.SOUTH);
 
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		for(x=0; x<OwnFieldJ1.getTaille()-1; x++) {
-			for(y=0; y<OwnFieldJ1.getTaille()-1; y++) {
+		for(x=1; x<OwnFieldJ1.getTaille(); x++) {
+			for(y=1; y<OwnFieldJ1.getTaille(); y++) {
 				if(e.getSource()==OwnFieldJ1.getBouton()[x][y]) {
-					System.out.println(bateauAPoser);
+					if(isVertical==true && !bateauAPoser.isTurned()) {
+						bateauAPoser.rotation();
+					}
+					
+					System.out.println(isVertical);
+					System.out.println(bateauAPoser.isTurned());
 					OwnFieldJ1.placerBateau(bateauAPoser, x, y);
+					if(OwnFieldJ1.getAEtePose()) {
+						if(j1.getBateaux()[0]==bateauAPoser) {
+							jbrPorteAvion.setEnabled(false);
+							nbPorteAvion.setText("0");
+							bateauAPoser=null;
+						}
+						else if(j1.getBateaux()[1]==bateauAPoser) {
+							jbrCroiseur.setEnabled(false);
+							nbCroiseur.setText("0");
+							bateauAPoser=null;
+						}
+						else if(j1.getBateaux()[2]==bateauAPoser) {
+							jbrContreTorpilleur.setEnabled(false);
+							nbContreTorpilleur.setText("0");
+							bateauAPoser=null;
+						}
+						else if(j1.getBateaux()[3]==bateauAPoser) {
+							jbrSousMarin.setEnabled(false);
+							nbSousMarin.setText("0");
+							bateauAPoser=null;
+						}
+						else if(j1.getBateaux()[4]==bateauAPoser) {
+							jbrTorpilleur.setEnabled(false);
+							nbTorpilleur.setText("0");
+							bateauAPoser=null;
+						}
+						group2.clearSelection();
+						OwnFieldJ1.afficherMatrice();
+
+					}
 				}
 			}
 		}

@@ -52,4 +52,17 @@ public class Terrain extends JPanel{
 	public void setTerrain(int[][] terrain) {
 		this.terrain = terrain;
 	}
+	
+	public void afficherMatrice() {
+		String line = "";
+		System.out.println("---------");
+		for(int i=0; i<this.taille;i++) {
+			for(int j=0; j<this.taille;j++) {
+				line+=terrain[i][j];
+			}
+			line+=System.lineSeparator();
+		}
+		System.out.println(line);
+		System.out.println("---------");
+	}
 }

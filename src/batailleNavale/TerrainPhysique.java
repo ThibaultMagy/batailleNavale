@@ -9,6 +9,7 @@ public class TerrainPhysique extends Terrain {
 	// ATTRIBUTS
 	private Bouton[][] bouton;
 	private int nbBateauPlace;
+	private boolean aEtePose;
 	//
 	// CONSTRUCTEURS
 	public TerrainPhysique(int taille) {
@@ -17,6 +18,7 @@ public class TerrainPhysique extends Terrain {
 		this.setLayout(new GridLayout(taille, taille));
 		setTerrain(taille, taille);
 		nbBateauPlace=0;
+		aEtePose=false;
 	}
 	
 	public TerrainPhysique(int taille1, int taille2) {
@@ -25,6 +27,7 @@ public class TerrainPhysique extends Terrain {
 		this.setLayout(new GridLayout(taille1,taille2));
 		setTerrain(taille1, taille2);
 		nbBateauPlace=0;
+		aEtePose=false;
 	}
 
 	public TerrainPhysique() {
@@ -32,6 +35,8 @@ public class TerrainPhysique extends Terrain {
 		bouton = new Bouton[TAILLE][TAILLE];
 		this.setLayout(new GridLayout(TAILLE, TAILLE));
 		setTerrain(TAILLE, TAILLE);
+		nbBateauPlace=0;
+		aEtePose=false;
 	}
 
 	// METHODES
@@ -78,16 +83,19 @@ public class TerrainPhysique extends Terrain {
 
 	// Methode permettant la mise en place d'un bateau
 	public void placerBateau(Bateau b, int i, int j) {
+		this.aEtePose=false;
 		if (!b.isTurned() && j + b.getX() > this.getTaille()) {
 			System.out.println("Impossible de placer le bateau ici !");
-		} else if (b.isTurned() && i + b.getX() > this.getTaille()) {
+		}
+		else if (b.isTurned() && i + b.getX() > this.getTaille()) {
 			System.out.println("Impossible de placer le bateau ici !");
-		} else if (!b.isTurned()) {
+		}
+		if (!b.isTurned()) {
 			boolean bool = true;
-			for (int y = j; y < j + b.getX() && bool; y++) {
-				if (this.getTerrainEtat(i, j) == 1) {
+			for (int y = j; y < j + b.getX(); y++) {
+				if (this.getTerrainEtat(i, y) == 1) {
 					bool = false;
-					System.out.println("Impossible de placer un bateau ici, un autre entre en conflit avec !");
+					System.out.println("Impossible de placer un bateau ici, un autre entre en conflit avec un autre!");
 				}
 			}
 			if (bool) {
@@ -97,36 +105,31 @@ public class TerrainPhysique extends Terrain {
 					verBout(bouton[i][y]);
 					System.out.println(i + "," + y);
 					this.nbBateauPlace+=1;
+					this.aEtePose=true;
 				}
-			} else {
-				bool = true;
-				for (int x = i; i < i + b.getX() && bool; i++) {
-					if (this.getTerrainEtat(i, j) == 1) {
-						bool = false;
-						System.out.println("Impossible de placer un bateau ici, un autre entre en conflit avec !");
-					}
+				System.out.println("Bateau place horizon");
+			}
+		}
+		//PARTIE VERTICALE
+		else {
+			boolean bool = true;
+			for (int x = i; x < i + b.getX(); x++) {
+				if (this.getTerrainEtat(x, j) == 1) {
+					bool = false;
+					System.out.println("Impossible de placer un bateau ici, un autre entre en conflit avec thib !");
 				}
 			}
-		} else {
-			boolean bool = true;
-			for (int y = j; y < j + b.getX() && bool; y++) {
-				if (this.getTerrainEtat(i, j) == 1) {
-					bool = false;
-					System.out.println("Impossible de placer un bateau ici, un autre entre en conflit avec !");
-				}
-				if (bool) {
+			if (bool) {
 
-					for (int x = i; x < i + b.getX(); x++) {
-						this.setTerrainEtat(1, x, j);
-						bouton[x][j].changeColor(1);
-						verBout(bouton[x][j]);
-						System.out.println(x + "," + j);
-						this.nbBateauPlace+=1;
-					}
-				} else {
-					System.out.println("code a remplir");
+				for (int x = i; x < i + b.getX(); x++) {
+					this.setTerrainEtat(1, x, j);
+					bouton[x][j].changeColor(1);
+					verBout(bouton[x][j]);
+					System.out.println(x + "," + j);
+					this.nbBateauPlace+=1;
+					this.aEtePose=true;
 				}
-
+				System.out.println("Bateau place vertical");
 			}
 		}
 	}
@@ -137,5 +140,19 @@ public class TerrainPhysique extends Terrain {
 	}
 	public Bouton[][] getBouton() {
 		return this.bouton;
+	}
+	
+	public boolean getAEtePose() {
+		return aEtePose;
+	}
+	public void resetField() {
+		for(int i=1; i<this.getTaille();i++) {
+			for(int j=1; j<this.getTaille();j++) {
+				bouton[i][j].changeColor(0);
+				this.setTerrainEtat(0,i,j);
+				bouton[i][j].setEnabled(true);
+				
+			}
+		}
 	}
 }
